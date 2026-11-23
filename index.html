@@ -18,8 +18,6 @@
     rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
     rel="stylesheet">
-  <!-- AOS for scroll animations -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <style>
     :root {
       --paper: #f6f4ee;
@@ -91,8 +89,15 @@
     }
 
     @keyframes floatTag {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-4px);
+      }
     }
 
     .tag::before {
@@ -106,9 +111,17 @@
     }
 
     @keyframes pulseDot {
-      0% { box-shadow: 0 0 0 0 rgba(193,68,14,.5); }
-      70% { box-shadow: 0 0 0 8px rgba(193,68,14,0); }
-      100% { box-shadow: 0 0 0 0 rgba(193,68,14,0); }
+      0% {
+        box-shadow: 0 0 0 0 rgba(193, 68, 14, .5);
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(193, 68, 14, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(193, 68, 14, 0);
+      }
     }
 
     section {
@@ -262,7 +275,7 @@
       transform: rotateY(-8deg) rotateX(4deg);
       box-shadow:
         18px 22px 0 0 var(--grid-line),
-        30px 40px 45px -20px rgba(28,43,51,.35);
+        30px 40px 45px -20px rgba(28, 43, 51, .35);
       transition: transform .5s ease, box-shadow .5s ease;
       will-change: transform;
     }
@@ -271,7 +284,7 @@
       transform: rotateY(0deg) rotateX(0deg) translateY(-6px);
       box-shadow:
         8px 12px 0 0 var(--grid-line),
-        16px 26px 40px -14px rgba(28,43,51,.4);
+        16px 26px 40px -14px rgba(28, 43, 51, .4);
     }
 
     .photo-frame::before {
@@ -336,7 +349,7 @@
     }
 
     .spec-list div:hover {
-      background: rgba(30,77,107,.05);
+      background: rgba(30, 77, 107, .05);
       padding-left: 8px;
       transform: translateX(2px);
     }
@@ -379,7 +392,7 @@
 
     .stats-strip>div:hover {
       transform: translateY(-8px) rotateX(6deg);
-      background: rgba(30,77,107,.05);
+      background: rgba(30, 77, 107, .05);
     }
 
     .stats-strip>div:last-child {
@@ -436,7 +449,7 @@
       border: 1px solid var(--ink);
       position: relative;
       background: repeating-linear-gradient(90deg, transparent, transparent 9px, var(--grid-line) 9px, var(--grid-line) 10px);
-      box-shadow: inset 0 2px 3px rgba(28,43,51,.15);
+      box-shadow: inset 0 2px 3px rgba(28, 43, 51, .15);
     }
 
     .gauge i {
@@ -447,8 +460,8 @@
       background: linear-gradient(90deg, var(--blue), var(--blue-line));
       display: block;
       width: 0%;
-      transition: width 1.4s cubic-bezier(.16,1,.3,1);
-      box-shadow: 0 0 8px rgba(61,126,166,.5);
+      transition: width 1.4s cubic-bezier(.16, 1, .3, 1);
+      box-shadow: 0 0 8px rgba(61, 126, 166, .5);
     }
 
     .gauge.filled i {
@@ -499,7 +512,7 @@
 
     .r-item:hover::before {
       transform: scale(1.4);
-      box-shadow: 0 0 0 5px rgba(193,68,14,.15);
+      box-shadow: 0 0 0 5px rgba(193, 68, 14, .15);
     }
 
     .r-item h4 {
@@ -585,7 +598,7 @@
     .pf-card:hover {
       background: #fbfaf6;
       transform: translateY(-10px) rotateX(4deg) scale(1.02);
-      box-shadow: 0 24px 34px -18px rgba(28,43,51,.45);
+      box-shadow: 0 24px 34px -18px rgba(28, 43, 51, .45);
       z-index: 5;
     }
 
@@ -667,7 +680,7 @@
 
     .svc-card:hover {
       transform: translateY(-8px) rotateX(5deg);
-      box-shadow: 0 20px 28px -16px rgba(28,43,51,.4);
+      box-shadow: 0 20px 28px -16px rgba(28, 43, 51, .4);
       background: #fff;
       z-index: 5;
     }
@@ -719,7 +732,7 @@
     .c-box:hover {
       transform: translateY(-6px);
       background: #fff;
-      box-shadow: 0 16px 24px -14px rgba(28,43,51,.35);
+      box-shadow: 0 16px 24px -14px rgba(28, 43, 51, .35);
     }
 
     .c-box i {
@@ -815,18 +828,280 @@
       }
     }
 
+    /* Reveal movement stays separate from the interactive 3D transform. */
+    section {
+      scroll-margin-top: 90px;
+    }
+
+    .wrap>*,
+    .skill-cols>*,
+    .pf-grid>*,
+    .svc-grid>*,
+    .c-grid>* {
+      min-width: 0;
+    }
+
+    .btn-row {
+      flex-wrap: wrap;
+    }
+
+    .c-box p,
+    .spec-list span {
+      overflow-wrap: anywhere;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 5px;
+    }
+
+    .reveal-pending {
+      opacity: 0;
+      translate: 0 26px;
+    }
+
+    [data-aos].reveal-ready {
+      transition: opacity .7s ease, translate .7s cubic-bezier(.16, 1, .3, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .reveal-ready.reveal-visible {
+      opacity: 1;
+      translate: 0 0;
+    }
+
+    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+
+      .tilt-ready,
+      .tilt-ready:hover {
+        transform: perspective(1100px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateZ(0);
+        transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
+      }
+
+      .tilt-ready.is-tilting {
+        transition: transform .12s ease-out, box-shadow .35s ease;
+        will-change: transform;
+        z-index: 6;
+      }
+
+      .tilt-ready::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at var(--light-x, 50%) var(--light-y, 50%), rgba(255, 255, 255, .38), transparent 65%);
+        opacity: 0;
+        transition: opacity .3s;
+        pointer-events: none;
+        transform: translateZ(1px);
+      }
+
+      .tilt-ready.is-tilting::after {
+        opacity: 1;
+      }
+
+      .photo-frame .photo-meta {
+        transform: translateZ(24px);
+      }
+
+      .pf-card .pf-inner {
+        transform: translateZ(18px);
+      }
+
+      .pf-card.is-tilting img {
+        transform: translateZ(12px);
+        filter: grayscale(0);
+      }
+
+      .svc-card {
+        background: var(--paper);
+      }
+
+      .svc-card h4,
+      .svc-card>i {
+        transform: translateZ(22px);
+      }
+
+      .c-box {
+        position: relative;
+        transform-style: preserve-3d;
+        background: var(--paper);
+      }
+
+      .c-box h3,
+      .c-box p {
+        transform: translateZ(16px);
+      }
+
+      .skrow {
+        transition: translate .25s ease;
+      }
+
+      .skrow:hover {
+        translate: 5px 0;
+      }
+    }
+
+    @media(max-width:900px) {
+      .topbar .wrap {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border: 1px solid var(--ink);
+        background: var(--paper);
+        color: var(--ink);
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .topnav {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 8px 18px;
+      }
+
+      .topnav a {
+        padding: 10px 0;
+      }
+
+      .topnav[hidden] {
+        display: none;
+      }
+
+      .hero {
+        padding: 50px 0 65px;
+      }
+
+      .hero .wrap,
+      .about .wrap,
+      .resume .wrap {
+        gap: 36px;
+      }
+
+      .photo-frame {
+        max-width: 460px;
+        margin: 0 auto;
+        transform: none;
+        will-change: auto;
+      }
+
+      .skill-cols {
+        gap: 0 28px;
+      }
+    }
+
+    @media(max-width:560px) {
+      .wrap {
+        padding: 0 20px;
+      }
+
+      .skill-cols {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h2 {
+        font-size: clamp(30px, 8vw, 42px);
+      }
+
+      .btn {
+        padding: 13px 18px;
+      }
+
+      .pf-card img {
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
+
+      .pf-inner p,
+      .svc-card p {
+        font-size: 14px;
+      }
+
+      .pf-inner a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .spec-list div {
+        gap: 14px;
+      }
+
+      .spec-list div> :last-child {
+        text-align: right;
+      }
+
+      .photo-frame {
+        padding: 12px;
+        box-shadow: 8px 10px 0 var(--grid-line);
+      }
+    }
+
+    @media (hover: none),
+    (pointer: coarse) {
+
+      .photo-frame:hover,
+      .pf-card:hover,
+      .svc-card:hover,
+      .c-box:hover,
+      .stats-strip>div:hover,
+      .pf-card:hover img {
+        transform: none;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal-pending {
+        opacity: 1;
+        translate: none;
+      }
+
+      .photo-frame,
+      .pf-card:hover,
+      .svc-card:hover,
+      .c-box:hover,
+      .stats-strip>div:hover,
+      .pf-card:hover img {
+        transform: none;
+      }
+
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
+  <link rel="stylesheet" href="assets/css/orbit-sections.css" data-home-styles>
 </head>
 
 <body>
+  <div class="code-wave" aria-hidden="true">
+    <span>const stack = ['Laravel', 'React', 'Next.js'];</span>
+    <span>export default async function build() { }</span>
+    <span>routes.map(route =&gt; render(route));</span>
+  </div>
 
   <div class="topbar">
     <div class="wrap">
       <div class="brand"><a href="#">SURAJ</a><span>.</span><a href="#">VERMA</a></div>
-      <nav class="topnav">
+      <button class="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="true">Menu <span
+          aria-hidden="true">☰</span></button>
+      <nav class="topnav" id="main-nav" aria-label="Main navigation">
         <a href="#about">About</a><a href="#resume">Resume</a><a href="#portfolio">Portfolio</a><a
           href="#services">Services</a><a href="#contact">Contact</a>
       </nav>
@@ -845,12 +1120,13 @@
           <a href="#contact" class="btn outline">Contact Me</a>
         </div>
       </div>
-      <div data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+      <div class="hero-visual orbit-stage" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+        <span class="floating-stack" aria-hidden="true">&lt; Laravel / React / Next.js &gt;</span>
         <div class="photo-frame">
           <img src="assets/img/my-profile-img.jpg" alt="Suraj Verma">
           <div class="photo-meta">
             <div><span class="k">Location</span>Faridabad, Haryana</div>
-            <div><span class="k">Experience</span>2+ Years</div>
+            <div><span class="k">Experience</span>3+ Years</div>
             <div><span class="k">Degree</span>BCA</div>
             <div><span class="k">Status</span>Open to Work</div>
           </div>
@@ -876,7 +1152,7 @@
       </div>
       <div data-aos="fade-up" data-aos-delay="150">
         <h2>About</h2>
-        <p>Full Stack Developer with 2+ years of experience in Laravel, React.js, MySQL, JavaScript, AJAX and REST APIs.
+        <p>Full Stack Developer with 3+ years of experience in Laravel, React.js, MySQL, JavaScript, AJAX and REST APIs.
           I specialize in developing scalable web applications, secure payment integrations, admin dashboards and
           responsive user interfaces. I enjoy building clean, maintainable and high-performance applications for
           production environments.</p>
@@ -892,7 +1168,7 @@
           <div class="l">Projects Completed</div>
         </div>
         <div data-aos="zoom-in" data-aos-delay="100">
-          <div class="n">2+</div>
+          <div class="n">3+</div>
           <div class="l">Years Experience</div>
         </div>
         <div data-aos="zoom-in" data-aos-delay="200">
@@ -933,15 +1209,19 @@
             <div class="top"><span>AJAX & jQuery</span><span class="p">90%</span></div>
             <div class="gauge" data-value="90"><i style="--target:90%"></i></div>
           </div>
-        </div>
-        <div data-aos="fade-up" data-aos-delay="200">
           <div class="skrow">
             <div class="top"><span>PHP/Laravel</span><span class="p">95%</span></div>
             <div class="gauge" data-value="95"><i style="--target:95%"></i></div>
           </div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200">
           <div class="skrow">
             <div class="top"><span>React.js</span><span class="p">85%</span></div>
             <div class="gauge" data-value="85"><i style="--target:85%"></i></div>
+          </div>
+          <div class="skrow">
+            <div class="top"><span>Next.js</span><span class="p">81%</span></div>
+            <div class="gauge" data-value="81"><i style="--target:81%"></i></div>
           </div>
           <div class="skrow">
             <div class="top"><span>MySQL</span><span class="p">90%</span></div>
@@ -964,7 +1244,7 @@
     <div class="wrap">
       <div data-aos="fade-up">
         <div class="col-h">Summary</div>
-        <p style="font-size:14.5px; color:var(--dim); line-height:1.7;">Full Stack Laravel Developer with 2+ years of
+        <p style="font-size:14.5px; color:var(--dim); line-height:1.7;">Full Stack Laravel Developer with 3+ years of
           experience building scalable web applications using Laravel, React.js, MySQL, JavaScript and REST APIs.
           Experienced in Payment Gateway Integration, Admin Panels, Excel Import/Export and Authentication Systems.</p>
         <div class="stack-tags">
@@ -1041,117 +1321,142 @@
     <div class="wrap">
       <div class="fig-label" data-aos="fade-up">FIG. 04 — CASE STUDIES</div>
       <h2 data-aos="fade-up">Portfolio</h2>
-      <p class="sub" data-aos="fade-up">Featured projects developed using Laravel, React.js, MySQL, REST APIs and Payment Gateway
+      <p class="sub" data-aos="fade-up">Featured projects developed using Laravel, React.js, MySQL, REST APIs and
+        Payment Gateway
         Integration.</p>
       <div class="pf-grid">
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/icgh.jpg" alt="ICGH">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="0">
+          <img src="assets/img/portfolio/sportrz.jpg" alt="Sportrz">
           <div class="pf-inner">
             <div class="idx">NO. 01</div>
+            <h4>Sportrz</h4>
+            <p>Full-stack sports gaming platform with Next.js, MySQL backend, email OTP authentication, Razorpay
+              subscriptions, affiliate tracking, and Admin & Affiliate dashboards.</p>
+            <a href="https://sportrz.com/" target="_blank" rel="noopener noreferrer">View Live →</a>
+          </div>
+        </div>
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/icgh.jpg" alt="ICGH">
+          <div class="pf-inner">
+            <div class="idx">NO. 02</div>
             <h4>ICGH</h4>
             <p>Frontend, Backend, Admin Panel and business modules with secure authentication.</p><a
               href="https://icgh.veltexs.com/" target="_blank">View Live →</a>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/engine-family.jpg" alt="Engine Family">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/engine-family.jpg"
+            alt="Engine Family">
           <div class="pf-inner">
-            <div class="idx">NO. 02</div>
+            <div class="idx">NO. 03</div>
             <h4>Engine Family</h4>
             <p>Frontend, Backend, Admin Dashboard and dynamic modules using Laravel and MySQL.</p><a
               href="https://engine-family.com/" target="_blank">View Live →</a>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/img/portfolio/insightfulstores.jpg" alt="Insightful Stores CRM">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img
+            src="assets/img/portfolio/insightfulstores.jpg" alt="Insightful Stores CRM">
           <div class="pf-inner">
-            <div class="idx">NO. 03</div>
+            <div class="idx">NO. 04</div>
             <h4>Insightful Stores CRM</h4>
             <p>Backend Development, Admin Panel, REST APIs for inventory management.</p><a
               href="https://insightfulstores.com" target="_blank">View Live →</a>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/kapishydro.jpg" alt="Kapish Hydro">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/kapishydro.jpg"
+            alt="Kapish Hydro">
           <div class="pf-inner">
-            <div class="idx">NO. 04</div>
+            <div class="idx">NO. 05</div>
             <h4>Kapish Hydro</h4>
             <p>Backend modules, Admin Dashboard and enhanced Frontend using Laravel.</p><a
               href="https://kapishydro.com/" target="_blank">View Live →</a>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/siddhmandir.jpg" alt="Siddh Mandir">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/siddhmandir.jpg"
+            alt="Siddh Mandir">
           <div class="pf-inner">
-            <div class="idx">NO. 05</div>
+            <div class="idx">NO. 06</div>
             <h4>Siddh Mandir</h4>
             <p>Frontend, Backend, Admin Panel and custom Laravel modules.</p>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/img/portfolio/weddingmastro.jpg" alt="Wedding Mastro">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/img/portfolio/weddingmastro.jpg"
+            alt="Wedding Mastro">
           <div class="pf-inner">
-            <div class="idx">NO. 06</div>
+            <div class="idx">NO. 07</div>
             <h4>Wedding Mastro</h4>
             <p>Frontend, Backend and Admin Panel for a wedding management platform.</p>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/excel_import.jpg" alt="Excel Import Export">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/excel_import.jpg"
+            alt="Excel Import Export">
           <div class="pf-inner">
-            <div class="idx">NO. 07</div>
+            <div class="idx">NO. 08</div>
             <h4>Excel Import Export</h4>
             <p>Bulk Excel Import, Export, Validation and Data Management.</p>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/astrotring.jpg" alt="Astrotring">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/astrotring.jpg"
+            alt="Astrotring">
           <div class="pf-inner">
-            <div class="idx">NO. 08</div>
+            <div class="idx">NO. 09</div>
             <h4>Astrotring</h4>
             <p>AI Astrology Platform with Laravel, React.js, Admin Panel, Wallet.</p><a href="https://astrotring.com/"
               target="_blank">View Live →</a>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/img/portfolio/astrotring_shop.jpg" alt="Astrotring.Shop">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/img/portfolio/astrotring_shop.jpg"
+            alt="Astrotring.Shop">
           <div class="pf-inner">
-            <div class="idx">NO. 09</div>
+            <div class="idx">NO. 10</div>
             <h4>AstroTring Shop</h4>
             <p>E-Commerce with Laravel, React.js, Razorpay, COD, Wallet, Shipping.</p><a href="https://astrotring.shop/"
               target="_blank">View Live →</a>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/veltex.jpg" alt="veltex">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/veltex.jpg"
+            alt="veltex">
           <div class="pf-inner">
-            <div class="idx">NO. 10</div>
+            <div class="idx">NO. 11</div>
             <h4>veltex</h4>
             <p>Responsive React.js frontend with a Laravel REST API backend.</p><a href="https://veltexs.com/"
               target="_blank">View Live →</a>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/payment.jpg" alt="Razorpay Payment Gateway">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/payment.jpg"
+            alt="Razorpay Payment Gateway">
           <div class="pf-inner">
-            <div class="idx">NO. 11</div>
+            <div class="idx">NO. 12</div>
             <h4>Razorpay Integration</h4>
             <p>Order creation, payment verification, refunds, transaction management.</p>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/img/portfolio/payment-cc-avenue.jpg" alt="CCAvenue Payment Gateway">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img
+            src="assets/img/portfolio/payment-cc-avenue.jpg" alt="CCAvenue Payment Gateway">
           <div class="pf-inner">
-            <div class="idx">NO. 12</div>
+            <div class="idx">NO. 13</div>
             <h4>CCAvenue Integration</h4>
             <p>Encrypted transactions, multi-bank support, secure checkout.</p>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/payment-payu.jpg" alt="PayU Payment Gateway">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="0"><img src="assets/img/portfolio/payment-payu.jpg"
+            alt="PayU Payment Gateway">
           <div class="pf-inner">
-            <div class="idx">NO. 13</div>
+            <div class="idx">NO. 14</div>
             <h4>PayU Integration</h4>
             <p>Secure payment processing, webhook handling, transaction tracking.</p>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/api.jpg" alt="REST API Development">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="50"><img src="assets/img/portfolio/api.jpg"
+            alt="REST API Development">
           <div class="pf-inner">
-            <div class="idx">NO. 14</div>
+            <div class="idx">NO. 15</div>
             <h4>REST API Development</h4>
             <p>Authentication, OTP Login, CRUD Operations, Role Permissions.</p>
           </div>
         </div>
-        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/img/portfolio/admin.jpg" alt="Admin Dashboard">
+        <div class="pf-card" data-aos="fade-up" data-aos-delay="100"><img src="assets/img/portfolio/admin.jpg"
+            alt="Admin Dashboard">
           <div class="pf-inner">
-            <div class="idx">NO. 15</div>
+            <div class="idx">NO. 16</div>
             <h4>Admin Dashboard</h4>
             <p>User Management, Roles, Permissions, Orders, Reports.</p>
           </div>
@@ -1221,7 +1526,7 @@
       </div>
       <div class="mapwrap" data-aos="fade-up">
         <iframe
-          src="https://maps.google.com/maps?width=600&height=400&hl=en&q=Badarpur%20Basantpur&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14025.509796775159!2d77.33246628324926!3d28.49828951963713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce652e9f07b51%3A0x99ec42df1ea5169f!2sBasantpur%2C%20New%20Delhi%2C%20Faridabad%2C%20Haryana%20121013!5e0!3m2!1sen!2sin!4v1795430819340!5m2!1sen!2sin"
           loading="lazy"></iframe>
       </div>
     </div>
@@ -1240,37 +1545,101 @@
     All Rights Reserved.
   </footer>
 
-  <!-- AOS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true, offset: 60 });
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const mobileNav = window.matchMedia('(max-width: 900px)');
+    const menuButton = document.querySelector('.menu-toggle');
+    const navigation = document.querySelector('.topnav');
+    function setMenu(open) {
+      navigation.hidden = mobileNav.matches && !open;
+      menuButton.setAttribute('aria-expanded', String(!navigation.hidden));
+    }
+    setMenu(false);
+    mobileNav.addEventListener('change', () => setMenu(false));
+    menuButton.addEventListener('click', () => setMenu(navigation.hidden));
+    navigation.addEventListener('click', event => {
+      if (event.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && mobileNav.matches && !navigation.hidden) {
+        setMenu(false);
+        menuButton.focus();
+      }
+    });
+
+    const revealElements = document.querySelectorAll('[data-aos]');
+    let revealObserver;
+    if ('IntersectionObserver' in window && !reducedMotion.matches) {
+      revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('reveal-visible');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -30px 0px' });
+      revealElements.forEach(element => {
+        element.style.setProperty('--reveal-delay', `${Math.min(Number(element.dataset.aosDelay) || 0, 200)}ms`);
+        element.classList.add('reveal-ready', 'reveal-pending');
+        revealObserver.observe(element);
+      });
+    }
 
     // Skill gauges: fill only when scrolled into view
     const gauges = document.querySelectorAll('.gauge');
-    const io = new IntersectionObserver((entries) => {
+    const io = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('filled');
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.4 });
-    gauges.forEach(g => io.observe(g));
+    }, { threshold: 0.4 }) : null;
+    gauges.forEach(g => io && !reducedMotion.matches ? io.observe(g) : g.classList.add('filled'));
 
-    // Hero photo-frame subtle mouse-follow 3D tilt
-    const frame = document.querySelector('.photo-frame');
-    if (frame && window.matchMedia('(hover: hover)').matches) {
-      const heroEl = document.querySelector('.hero');
-      heroEl.addEventListener('mousemove', (e) => {
-        const rect = heroEl.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        frame.style.transform = `rotateY(${x * 14}deg) rotateX(${-y * 10}deg)`;
+    // One scheduled frame per active card; touch scrolling never drives tilt.
+    const tiltCards = document.querySelectorAll('.photo-frame, .pf-card, .svc-card, .c-box');
+    const resets = [];
+    tiltCards.forEach(card => {
+      let pendingFrame = 0;
+      function reset() {
+        cancelAnimationFrame(pendingFrame);
+        pendingFrame = 0;
+        card.classList.remove('is-tilting');
+        ['--tilt-x', '--tilt-y', '--light-x', '--light-y'].forEach(name => card.style.removeProperty(name));
+      }
+      resets.push(reset);
+      card.addEventListener('pointermove', event => {
+        if (!finePointer.matches || reducedMotion.matches || event.pointerType === 'touch') return;
+        cancelAnimationFrame(pendingFrame);
+        pendingFrame = requestAnimationFrame(() => {
+          const rect = card.getBoundingClientRect();
+          const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+          const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+          card.classList.add('is-tilting');
+          card.style.setProperty('--tilt-x', `${(0.5 - y) * 12}deg`);
+          card.style.setProperty('--tilt-y', `${(x - 0.5) * 14}deg`);
+          card.style.setProperty('--light-x', `${x * 100}%`);
+          card.style.setProperty('--light-y', `${y * 100}%`);
+          pendingFrame = 0;
+        });
       });
-      heroEl.addEventListener('mouseleave', () => {
-        frame.style.transform = 'rotateY(-8deg) rotateX(4deg)';
-      });
+      card.addEventListener('pointerleave', reset);
+      card.addEventListener('pointercancel', reset);
+    });
+    function syncMotion() {
+      resets.forEach(reset => reset());
+      tiltCards.forEach(card => card.classList.toggle('tilt-ready', finePointer.matches && !reducedMotion.matches));
+      if (reducedMotion.matches) {
+        revealObserver?.disconnect();
+        revealElements.forEach(element => element.classList.add('reveal-visible'));
+        gauges.forEach(gauge => gauge.classList.add('filled'));
+      }
     }
+    finePointer.addEventListener('change', syncMotion);
+    reducedMotion.addEventListener('change', syncMotion);
+    window.addEventListener('blur', () => resets.forEach(reset => reset()));
+    syncMotion();
   </script>
 
 </body>

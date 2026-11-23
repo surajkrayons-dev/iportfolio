@@ -1,0 +1,305 @@
+/* Share the Orbit palette across the main page. */
+:root {
+  --paper: #10101a;
+  --panel: #191724;
+  --ink: #f0edf8;
+  --dim: #aaa8bf;
+  --blue: #d0b4ff;
+  --blue-line: #8cdddf;
+  --red: #c2a2ff;
+  --grid-line: #302b46;
+}
+
+body {
+  background-image: none;
+  isolation: isolate;
+}
+
+.code-wave {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--red);
+  opacity: .1;
+  font: clamp(15px, 2vw, 28px)/1.4 ui-monospace, Consolas, monospace;
+  mask-image: linear-gradient(110deg, transparent 5%, #000 45%, #000 75%, transparent 98%);
+}
+
+.code-wave span {
+  position: absolute;
+  inset: var(--code-top, 23%) auto auto var(--code-left, 18%);
+  white-space: nowrap;
+  animation: code-drift 20s ease-in-out infinite alternate;
+}
+
+.code-wave span:nth-child(2) {
+  --code-top: 49%;
+  --code-left: 32%;
+  animation-delay: -8s;
+}
+
+.code-wave span:nth-child(3) {
+  --code-top: 76%;
+  --code-left: 10%;
+  animation-delay: -14s;
+}
+
+@keyframes code-drift {
+  from { transform: translate3d(-7vw, 12px, 0) rotate(-5deg); }
+  to { transform: translate3d(7vw, -18px, 0) rotate(-2deg); }
+}
+
+.topbar {
+  background: rgba(16, 16, 26, .84);
+  backdrop-filter: blur(16px) saturate(135%);
+  border-bottom-color: var(--grid-line);
+}
+
+#hero .photo-frame,
+#services .svc-card {
+  background-image: linear-gradient(145deg, #c2a2ff18, transparent 58%);
+  box-shadow: inset 0 1px 0 #e4d2ff25, 0 12px 28px -20px #000b;
+}
+
+@media (max-width: 560px) {
+  .code-wave { opacity: .07; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .code-wave span { animation: none; }
+}
+
+.spec-list div:hover,
+.stats-strip > div:hover,
+.c-box,
+.c-box:hover {
+  background: var(--panel);
+}
+
+#services .svc-card:hover { background: #211d30; }
+
+#hero .wrap,
+#portfolio .wrap,
+#services .wrap {
+  max-width: 1240px;
+  padding-inline: clamp(20px, 3.3vw, 40px);
+}
+
+#hero {
+  padding-block: clamp(40px, 6.8vw, 95px) clamp(55px, 6vw, 85px);
+  background-image: radial-gradient(ellipse at 75% 50%, #7652ca25, transparent 55%);
+  overflow: clip;
+}
+
+#hero .wrap {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: clamp(36px, 5vw, 70px);
+  align-items: center;
+}
+
+#hero .tag {
+  padding: 9px 14px;
+  border-radius: 30px;
+  background: #221d33;
+  border-color: #44335f;
+  color: #dfceff;
+  font-size: 11px;
+  animation: none;
+}
+
+#hero .tag::before {
+  background: var(--red);
+  animation: none;
+  box-shadow: none;
+}
+
+#hero h2 {
+  font-size: clamp(44px, 5.9vw, 80px);
+  line-height: 1.08;
+  letter-spacing: -.065em;
+  margin-bottom: 24px;
+}
+
+#hero h2 em {
+  color: var(--red);
+  text-decoration: none;
+}
+
+#hero .desc {
+  max-width: 550px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+#hero .btn {
+  min-height: 48px;
+  padding: 14px 22px;
+  border-radius: 40px;
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  box-shadow: none;
+}
+
+#hero .btn.solid {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: var(--paper);
+}
+
+#hero .btn.solid:hover { background-color: var(--blue); }
+
+#hero .orbit-stage {
+  position: relative;
+  isolation: isolate;
+  padding: 32px 30px;
+}
+
+#hero .orbit-stage::before,
+#hero .orbit-stage::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#hero .orbit-stage::before {
+  inset: 9% -2%;
+  border: 1px solid #8b6abe66;
+  transform: rotate(-30deg);
+}
+
+#hero .orbit-stage::after {
+  inset: 1% 10%;
+  border: 1px dashed #8b6abe55;
+  transform: rotate(30deg);
+}
+
+#hero .floating-stack {
+  position: absolute;
+  top: 3%;
+  right: 0;
+  z-index: 8;
+  padding: 12px 16px;
+  background: #241f34;
+  border: 1px solid #594272;
+  color: #e0ceff;
+  border-radius: 12px;
+  font: 12px/1.4 ui-monospace, Consolas, monospace;
+  transform: rotate(7deg);
+  box-shadow: 0 12px 30px #0004;
+  pointer-events: none;
+}
+
+#hero .photo-frame {
+  padding: 12px;
+  border: 1px solid #5c4979;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #2c2540, #191724);
+  box-shadow: 0 25px 90px -20px #000a;
+}
+
+#hero .photo-frame::before {
+  content: 'SURAJ.V / DEVELOPER';
+  inset: auto 18px -17px auto;
+  padding: 10px 14px;
+  border: 1px solid #5c4979;
+  border-radius: 9px;
+  background: #221d33;
+  color: #e0cfff;
+}
+
+#hero .photo-frame img {
+  max-height: 360px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 15px;
+  filter: none;
+}
+
+#hero .photo-meta { padding: 6px 8px 14px; }
+
+#portfolio,
+#services { padding-block: clamp(48px, 7vw, 90px); }
+
+#portfolio h2,
+#services h2 {
+  font-size: clamp(30px, 4vw, 46px);
+  letter-spacing: -.045em;
+}
+
+#portfolio .sub {
+  max-width: 640px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+#portfolio .pf-grid,
+#services .svc-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  border: none;
+}
+
+#portfolio .pf-card,
+#services .svc-card {
+  border: 1px solid var(--grid-line);
+  border-radius: 18px;
+  background-color: var(--panel);
+}
+
+#portfolio .pf-card img {
+  height: auto;
+  aspect-ratio: 16 / 10;
+  border-radius: 17px 17px 0 0;
+  filter: none;
+}
+
+#portfolio .pf-inner { padding: 24px; }
+#portfolio .idx { font-size: 11px; }
+
+#portfolio .pf-inner h4 {
+  margin-block: 10px;
+  font-size: 19px;
+  letter-spacing: -.03em;
+}
+
+#portfolio .pf-inner p,
+#services .svc-card p {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+#portfolio .pf-inner a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--red);
+  font-size: 12px;
+}
+
+#services .svc-grid { gap: 22px; }
+#services .svc-card { padding: 30px; }
+#services .svc-card > i { color: var(--red); }
+#services .svc-card h4 { font-size: 17px; }
+
+@media (max-width: 900px) {
+  #hero .wrap { grid-template-columns: 1fr; gap: 36px; }
+  #hero h2 { font-size: clamp(42px, 8vw, 70px); }
+  #hero .orbit-stage { width: min(100%, 430px); margin-inline: auto; }
+  #portfolio .pf-grid,
+  #services .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  #hero h2 { font-size: clamp(34px, 9vw, 49px); }
+  #hero .desc { font-size: 15px; }
+  #hero .orbit-stage { padding: 20px 16px; }
+  #hero .floating-stack { right: 0; font-size: 10px; }
+  #portfolio .pf-grid,
+  #services .svc-grid { grid-template-columns: 1fr; gap: 18px; }
+  #portfolio .pf-inner { padding: 22px; }
+}
